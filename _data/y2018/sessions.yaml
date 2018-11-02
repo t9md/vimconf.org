@@ -92,6 +92,7 @@
   twitter: tadsan
   abstract: >-
     Traditional text editors have been favored as an antithesis against heavy IDE. In today's software development, however, the power of the IDE is increasingly recognized even in the project using a dynamic language, and sometimes it is recommended over bare text-editor.
+    
     Considering that, I will introduce methods to add IDE-like language support to text-editor, especially I will introduce editor-agnostic tools for intelligent PHP development and explain its application to Emacs and Vim.
   bio: >-
     Vim user from 2011.  Web programmer in pixiv Inc, and current
