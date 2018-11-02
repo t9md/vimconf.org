@@ -22,16 +22,22 @@ title: VimConf 2018 - An international Vim Conference
             <a class="nav-link" href="#link-keynote">Keynote speakers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#link-speakers">Speakers</a>
+            <a class="nav-link" href="#link-timetable">Time table</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#link-timetable">Time table</a>
+            <a class="nav-link" href="#link-side-events">Side events</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#link-sponsors">Sponsors</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="#link-faq">FAQ</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#link-staff">Staff</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sessions">Sessions</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../coc">Code of conduct</a>
@@ -97,7 +103,7 @@ title: VimConf 2018 - An international Vim Conference
 
         <div class="row">
           <div class="col-4">
-            <p><a class="btn btn-secondary" href="https://vimconf2018-ticket.peatix.com/" role="button">Purchase tickets &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="https://vimconf2018-ticket.peatix.com/" role="button">Purchase tickets &raquo;</a> <span class="sold-out">Sold Out!</span></p>
             <p><a class="btn btn-secondary" href="https://vimconf2018-individual.peatix.com/" role="button">Purchase individual sponsor options independently &raquo;</a></p>
             <p><a href="https://vimconf.wordpress.com/2018/08/30/well-start-selling-vimconf-2018-tickets-on-2018-09-17/">Start selling on 2018-09-17</a></p>
           </div>
@@ -156,30 +162,6 @@ In Japan, He write serial articles about Vim in monthly magazine.
           </div>
         </div>
 
-        <div class="jumbotron" id="link-speakers">
-          <h2>Speakers</h2>
-        </div>
-
-        <div class="row">
-          {% for speaker in site.data.y2018.speakers %}
-          <div class="col-md-4">
-            <h2>{{ speaker.name }}</h2>
-            <img src="{{ speaker.image }}" width="236" height="236" />
-
-            <p>
-              {% if speaker.github %}<a href="https://github.com/{{ speaker.github }}"><img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" width="32" height="32" alt="Link to GitHub account"/></a>{% endif %}
-              {% if speaker.twitter %}<a href="https://twitter.com/{{ speaker.twitter }}"><img src="https://embed.gyazo.com/5f0c9cc6e0515266bef0bf736ff21213.png" width="32" height="32" alt="Link to Twitter account" /></a>{% endif %}
-            </p>
-
-            <p>{{ speaker.bio }}</p>
-            <!--
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            -->
-          </div>
-          {% endfor %}
-        </div>
-
-
         <div class="jumbotron" id="link-timetable">
           <h2>Time Table</h2>
         </div>
@@ -197,7 +179,11 @@ In Japan, He write serial articles about Vim in monthly magazine.
           {% for program in site.data.y2018.timetable %}
             <tr>
               <th>{{ program.Start }} - {{ program.End }}</th>
+              {% if program.SessionID %}
+              <th><a href="sessions/#link-{{program.SessionID}}">{{ program.Content }}</a></th>
+              {% else %}
               <th>{{ program.Content }}</th>
+              {% endif %}
               <th>{{ program.Speaker }}</th>
               <th>{{ program.Language }}</th>
             </tr>
@@ -206,6 +192,25 @@ In Japan, He write serial articles about Vim in monthly magazine.
         </table>
 
 
+        <div class="jumbotron" id="link-side-events">
+          <h2>Side events</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <a href="https://vimconf.connpass.com/event/102292/">
+              <img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/19/79/1979633d6dd570c021be9e30fe87bfef.png"
+                   width="100%" height="100%" />
+            </a>
+          </div>
+          <div class="col-md-6">
+            <p><span class="sold-out">Successfully finished on 2018-10-31</span></p>
+            <a href="https://vimconf.connpass.com/event/102292/">.vimconf.swp</a> is an official VimConf 2018 event. This meetup asks the Vim hackers who's talk proposals weren't accepted (i.e. rejected) to talk, and also the VimConf staff to talk about VimConf 2018 itself. If you know about <a href="https://speee.connpass.com/event/84915/">RejectKaigi</a> for RubyKaigi it's probably easy to understand what the concept is. This is not part of this international Vim conference VimConf 2018 itself, but this is hosted by some of VimConf 2018 staff.
+          </div>
+        </div>
+
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
         <div class="jumbotron" id="link-sponsors">
           <h2>Sponsors</h2>
         </div>
@@ -303,6 +308,16 @@ In Japan, He write serial articles about Vim in monthly magazine.
             </a>
           </div>
 
+          <div class="sponsors col-md-4">
+            <a href="https://www.quipper.com/" class="sponsors-name">Quipper Ltd.</a><br />
+            <a href="https://www.quipper.com/" class="sponsors-url">https://www.quipper.com/</a><br />
+            <a href="https://www.quipper.com/">
+              <div class="sponsors-logo sponsors-logo-silver">
+                <img src="logo/quipper-logo.png" />
+              </div>
+            </a>
+          </div>
+
         </div>
 
         <h3 id="link-bronze-sponsors">Bronze Sponsors</h3>
@@ -355,7 +370,7 @@ In Japan, He write serial articles about Vim in monthly magazine.
           {% for individual_sponsor in site.data.y2018.individual_sponsors %}
           <div class="individual-sponsor-grid">
             <section class="individual-sponsor">
-              <h6>{{ individual_sponsor.comment }}</h5>
+              <h6>{{ individual_sponsor.comment }}</h6>
               <div class="individual-sponsor-icon">
                 <img src="individual-sponsor/{{ individual_sponsor.icon_name }}.png"/>
               </div>
@@ -364,13 +379,20 @@ In Japan, He write serial articles about Vim in monthly magazine.
           {% endfor %}
         </div>
 
-        <p>
-        To be determined. <a href="https://vimconf.wordpress.com/2018/06/29/looking-for-companies-sponsoring-vimconf-2018/">We are looking for sponsors!</a>
-        </p>
-        <p><a class="btn btn-secondary" href="https://vimconf.wordpress.com/2018/06/29/looking-for-companies-sponsoring-vimconf-2018/" role="button">Apply now (English) &raquo;</a></p>
-        <p><a class="btn btn-secondary" href="https://vim-jp.org/blog/2018/06/07/VimConf2018-sponsor-ja.html" role="button">Apply now (Japanese) &raquo;</a></p>
-
         <div class="row">
+        </div>
+
+        <div class="jumbotron" id="link-faq">
+          <h2>FAQ</h2>
+        </div>
+
+        <!-- 苦肉の策。つらい -->
+        <div id="link-faq-twitter-hashtag" style="position: relative; top: -2em"></div>
+
+        <h3><a href="#link-faq-twitter-hashtag">Q. What's the official Twitter hashtag?</a></h3>
+
+        <div class="row col-4">
+          <p>#vimconf</p>
         </div>
 
         <div class="jumbotron" id="link-staff">
